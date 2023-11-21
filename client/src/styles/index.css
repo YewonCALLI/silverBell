@@ -16,7 +16,7 @@
   body,
   #__next {
     width: 100%;
-    background: black;
-    color: white;
+    background: white;
+    color: black;
   }
 }

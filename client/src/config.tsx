@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
-const titleDefault = 'NO-TITLE'
-const url = 'NO-URL'
-const description = 'NO-DESCRIPTION'
-const author = 'NO-AUTHOR'
-const keywords = 'NO-KEYWORDS'
+const titleDefault = '실버벨'
+const url = 'app.abt-avatar.world'
+const description = '노인을 위한 체조 프로그램'
+const author = '@happyphysics.club'
+const keywords = 'Elderly, Exercise, Health, Silverbell, 실버벨, 노인, 운동, 건강'
 
 export default function Header({ title = titleDefault }) {
   return (
