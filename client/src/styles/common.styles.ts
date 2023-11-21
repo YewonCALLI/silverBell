@@ -10,6 +10,16 @@ export const MotionDiv = styled(motion.div).attrs({
   transition: { duration: 0.3 },
 })``
 
+export const MotionScreen = styled(motion.div).attrs({
+  layout: true,
+  initial: { opacity: 1 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: {
+    duration: 0.5,
+  },
+})``
+
 export const MotionText = styled(motion.span).attrs({
   layout: true,
   transition: { duration: 0.3 },
