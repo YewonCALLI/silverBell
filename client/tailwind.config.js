@@ -17,6 +17,10 @@ module.exports = {
         '4xl': '2.441rem',
         '5xl': '3.052rem',
       },
+      colors: {
+        'background': '#1a8867',
+        'primary': '#e34234',
+      },
     },
   },
   variants: {

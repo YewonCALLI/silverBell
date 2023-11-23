@@ -7,7 +7,6 @@
   font-family: 'SUIT';
   font-weight: 100;
   src: url('/fonts/SUIT-Thin.woff2 ') format('woff2');
-
 }
 
 @font-face {
@@ -70,8 +69,8 @@
   body,
   #__next {
     width: 100%;
-    background: white;
-    color: black;
+    background: #1a8867;
+    color: #e34234;
     font-family: 'SUIT', sans-serif;
     overflow: hidden;
     height: 100%;
