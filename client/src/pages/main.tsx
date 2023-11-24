@@ -49,10 +49,11 @@ export default function Page(props) {
             boxShadow: '0px 8px 0px pink',
           }}
           onClick={() => {
-            setPlaying(true)
-            videoRef.current?.play()
+            setPlaying(!playing)
+            if (!playing) videoRef.current?.play()
+            else videoRef.current?.pause()
           }}>
-          시작하기
+          {playing ? '일시정지' : '재생'}
         </button>
         <button
           className='w-full h-full -translate-y-2 font-bold text-3xl rounded-xl bg-[skyblue] text-[black] active:text-blue active:bg-background active:translate-y-0 transition-all duration-300 ease-in-out '
@@ -61,9 +62,11 @@ export default function Page(props) {
           }}
           onClick={() => {
             setPlaying(false)
-            if (playing) videoRef.current?.pause()
+            videoRef.current.currentTime = 0
+            setPlaying(true)
+            videoRef.current.play()
           }}>
-          멈추기
+          다시 시작하기
         </button>
       </div>
     </>
