@@ -25,9 +25,11 @@ export default function Page(props) {
     }
   }, [])
 
+  console.log(Math.round((currentTime / videoRef.current.duration) * 100))
+
   return (
     <>
-      <div className='fixed top-0 flex flex-row justify-center items-center w-full h-20'>
+      <div className='fixed top-0 p-4 flex flex-col justify-center items-center w-full h-20'>
         <button
           className='fixed top-0 right-0 p-2 text-x'
           onClick={() => {
@@ -35,16 +37,23 @@ export default function Page(props) {
           }}>
           🔄
         </button>
-        <div className='text-xl font-bold text-primary'>
+        <div className='text-2xl font-bold text-primary'>
           {Math.floor(currentTime / 60)}:{Math.floor(currentTime % 60)}
+        </div>
+        <div className='border-2 border-[skyblue] rounded h-8 w-full'>
+          <div
+            className='bg-[skyblue] h-full'
+            style={{
+              width: Math.round((currentTime / videoRef.current.duration) * 100) + '%',
+            }}></div>
         </div>
       </div>
       <div className='w-full h-full flex flex-col bg-background justify-between items-center'>
-        <video ref={videoRef} className='w-full h-full' src='/videos/sample.mp4' loop muted playsInline />
+        <video ref={videoRef} className='w-fit h-full' src='/videos/sample.mp4' loop playsInline />
       </div>
       <div className='fixed bottom-0 w-full flex gap-4 flex-row h-20 py-2 px-4'>
         <button
-          className='w-full h-full -translate-y-2 font-bold text-3xl rounded-xl bg-primary text-[pink] active:text-primary active:bg-background active:translate-y-0 transition-all duration-300 ease-in-out '
+          className='w-full h-full -translate-y-2 font-bold text-2xl rounded-xl bg-primary text-[pink] active:text-primary active:bg-background active:translate-y-0 transition-all duration-300 ease-in-out '
           style={{
             boxShadow: '0px 8px 0px pink',
           }}
@@ -56,7 +65,7 @@ export default function Page(props) {
           {playing ? '일시정지' : '재생'}
         </button>
         <button
-          className='w-full h-full -translate-y-2 font-bold text-3xl rounded-xl bg-[skyblue] text-[black] active:text-blue active:bg-background active:translate-y-0 transition-all duration-300 ease-in-out '
+          className='w-full h-full -translate-y-2 font-bold text-2xl rounded-xl bg-[skyblue] text-[black] active:text-blue active:bg-background active:translate-y-0 transition-all duration-300 ease-in-out '
           style={{
             boxShadow: '0px 8px 0px blue',
           }}
