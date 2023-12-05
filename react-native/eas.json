@@ -1,19 +1,36 @@
 {
   "cli": {
-    "version": ">= 5.9.1"
+    "version": ">= 3.15.1"
   },
   "build": {
     "development": {
+      "extends": "production",
       "distribution": "internal",
       "android": {
         "gradleCommand": ":app:assembleDebug"
       },
       "ios": {
-        "buildConfiguration": "Debug"
+        "buildConfiguration": "Debug",
+        "simulator": true
+      }
+    },
+    "development:device": {
+      "extends": "development",
+      "distribution": "internal",
+      "ios": {
+        "buildConfiguration": "Debug",
+        "simulator": false
       }
     },
     "preview": {
-      "distribution": "internal"
+      "extends": "production",
+      "distribution": "internal",
+      "ios": { "simulator": true },
+      "android": { "buildType": "apk" }
+    },
+    "preview:device": {
+      "extends": "preview",
+      "ios": { "simulator": false }
     },
     "production": {}
   },
