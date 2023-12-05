@@ -1,14 +1,21 @@
 import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
-import { View } from "react-native"
+import { View, ViewStyle } from "react-native"
 import Video from "react-native-video"
 import { Button } from "../../../components"
+import { colors } from "../../../theme"
 
-interface VideoPlayerProps {}
+interface VideoPlayerProps {
+  videoRef?: React.RefObject<Video>
+}
 
 export const VideoPlayer: FC<VideoPlayerProps> = observer(function VideoPlayer(
   props: VideoPlayerProps,
 ) {
+  const { videoRef } = props
+
+  const sampleVideo = require("../../../../assets/videos/sample.mp4")
+
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [isMuted, setIsMuted] = React.useState(false)
 
@@ -17,14 +24,38 @@ export const VideoPlayer: FC<VideoPlayerProps> = observer(function VideoPlayer(
   return (
     <View>
       <Video
-        source={"https://www.w3schools.com/html/mov_bbb.mp4"}
+        ref={videoRef}
+        source={sampleVideo}
         style={$video}
         paused={!isPlaying}
-        controls={true}
+        controls={false}
         muted={isMuted}
+        resizeMode="contain"
+        maxBitrate="default"
+        rate={1.0}
       />
-      <Button onPress={() => setIsPlaying((p) => !p)} text={isPlaying ? "Stop" : "Play"} />
-      <Button onPress={() => setIsMuted((m) => !m)} text={isMuted ? "Unmute" : "Mute"} />
+      <View style={$controlContainer}>
+        <Button
+          style={{
+            backgroundColor: isPlaying ? colors.vermilion : colors.yellow,
+          }}
+          onPress={() => setIsPlaying((p) => !p)}
+          text={isPlaying ? "Stop" : "Play"}
+          textColor={isPlaying ? "white" : "black"}
+          textSize="xxl"
+          fontWeight="extraBold"
+        />
+        <Button
+          style={{
+            backgroundColor: isMuted ? colors.reddishPurple : colors.skyBlue,
+          }}
+          onPress={() => setIsMuted((m) => !m)}
+          text={isMuted ? "Unmute" : "Mute"}
+          textSize="xxl"
+          textColor={isMuted ? "white" : "black"}
+          fontWeight="extraBold"
+        />
+      </View>
     </View>
   )
 })
@@ -32,4 +63,12 @@ export const VideoPlayer: FC<VideoPlayerProps> = observer(function VideoPlayer(
 const $video = {
   width: "100%",
   height: 500,
+}
+
+const $controlContainer: ViewStyle = {
+  flexDirection: "row",
+  marginTop: 10,
+  paddingHorizontal: 10,
+  justifyContent: "space-between",
+  gap: 10,
 }

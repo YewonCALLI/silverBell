@@ -26,6 +26,12 @@ export interface ButtonProps extends PressableProps {
    * The text to display if not using `tx` or nested components.
    */
   text?: TextProps["text"]
+
+  textSize?: TextProps["size"]
+
+  textColor?: TextProps["color"]
+
+  fontWeight?: TextProps["weight"]
   /**
    * Optional options to pass to i18n. Useful for interpolation
    * as well as explicitly setting locale or translation fallbacks.
@@ -78,6 +84,9 @@ export function Button(props: ButtonProps) {
     tx,
     text,
     txOptions,
+    textSize,
+    textColor,
+    fontWeight,
     style: $viewStyleOverride,
     pressedStyle: $pressedViewStyleOverride,
     textStyle: $textStyleOverride,
@@ -110,7 +119,15 @@ export function Button(props: ButtonProps) {
         <>
           {!!LeftAccessory && <LeftAccessory style={$leftAccessoryStyle} pressableState={state} />}
 
-          <Text tx={tx} text={text} txOptions={txOptions} style={$textStyle(state)}>
+          <Text
+            tx={tx}
+            text={text}
+            txOptions={txOptions}
+            size={textSize}
+            color={textColor}
+            weight={fontWeight}
+            style={$textStyle(state)}
+          >
             {children}
           </Text>
 
@@ -124,20 +141,19 @@ export function Button(props: ButtonProps) {
 }
 
 const $baseViewStyle: ViewStyle = {
+  flexGrow: 1,
   minHeight: 56,
-  borderRadius: 4,
+  borderRadius: 10,
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "row",
   paddingVertical: spacing.sm,
   paddingHorizontal: spacing.sm,
-  overflow: "hidden",
+  shadowColor: colors.black,
+  shadowOffset: { width: 0, height: 4 },
 }
 
 const $baseTextStyle: TextStyle = {
-  fontSize: 16,
-  lineHeight: 20,
-  fontFamily: typography.primary.medium,
   textAlign: "center",
   flexShrink: 1,
   flexGrow: 0,
@@ -151,8 +167,6 @@ const $viewPresets = {
   default: [
     $baseViewStyle,
     {
-      borderWidth: 1,
-      borderColor: colors.gray,
       backgroundColor: colors.white,
     },
   ] as StyleProp<ViewStyle>,
