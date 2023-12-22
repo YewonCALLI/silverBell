@@ -13,7 +13,7 @@ interface ProgressBarProps {
 export const ProgressBar: FC<ProgressBarProps> = observer(function ProgressBar(
   props: ProgressBarProps,
 ) {
-  const { progress, max, $style } = props
+  const { progress = 50, max, $style } = props
   const width = useWindowDimensions().width
   const progressWidth = (progress / max) * width
 

@@ -2,7 +2,6 @@
   "name": "silver-bell-challenge",
   "version": "0.0.1",
   "private": true,
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "compile": "tsc --noEmit -p . --pretty",
     "format": "prettier --write \"app/**/*.{js,jsx,json,md,ts,tsx}\"",

@@ -40,7 +40,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = observer(function VideoPlayer(
             backgroundColor: isPlaying ? colors.vermilion : colors.yellow,
           }}
           onPress={() => setIsPlaying((p) => !p)}
-          text={isPlaying ? "Stop" : "Play"}
+          text={isPlaying ? "일시정지" : "시작"}
           textColor={isPlaying ? "white" : "black"}
           textSize="xxl"
           fontWeight="extraBold"
@@ -50,7 +50,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = observer(function VideoPlayer(
             backgroundColor: isMuted ? colors.reddishPurple : colors.skyBlue,
           }}
           onPress={() => setIsMuted((m) => !m)}
-          text={isMuted ? "Unmute" : "Mute"}
+          text={isMuted ? "음악" : "조용히"}
           textSize="xxl"
           textColor={isMuted ? "white" : "black"}
           fontWeight="extraBold"
